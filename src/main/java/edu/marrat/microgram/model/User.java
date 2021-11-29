@@ -1,5 +1,6 @@
 package edu.marrat.microgram.model;
 
+
 public class User {
     private Long id;
     private String userName;
@@ -12,6 +13,15 @@ public class User {
 
     public User(Long id, String userName, String email, String password, int qtyOfLike, int qtyOfFollower, int qtyOfFollowing) {
         this.id = id;
+        this.userName = userName;
+        this.email = email;
+        this.password = password;
+        this.qtyOfLike = qtyOfLike;
+        this.qtyOfFollower = qtyOfFollower;
+        this.qtyOfFollowing = qtyOfFollowing;
+    }
+
+    public User(String userName, String email, String password, int qtyOfLike, int qtyOfFollower, int qtyOfFollowing) {
         this.userName = userName;
         this.email = email;
         this.password = password;

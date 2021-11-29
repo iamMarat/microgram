@@ -19,16 +19,15 @@ public class PreloadDatabaseWithData {
 
         repository.deleteAll();
 
-        return (args) -> Stream.of(artists())
+        return (args) -> Stream.of(users())
                 .peek(System.out::println)
                 .forEach(repository::save);
     }
 
-    private User[] artists() {
+    private User[] users() {
         return new User[]{
-                new User("Markus Sillman", "mark007@asd.com","mar123"),
-                new User("Kusman MaSill", "kusman@masd.kz","asda311")
-
-
+                new User("Markus Sillman", "mark007@asd.com","mar123",1,2,3),
+                new User("Kusman MaSill", "kusman@masd.kz","asda311",5,72,1)
         };
+
 }}
