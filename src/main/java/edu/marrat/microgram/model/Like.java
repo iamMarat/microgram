@@ -1,32 +1,36 @@
 package edu.marrat.microgram.model;
 
-import java.time.LocalDate;
+import lombok.Data;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDate;
+@Document(collection = "likes")
+@Data
 public class Like {
-        private User whoLiked_id;
-        private Publication whatWasLiked_id;
+        private User whoLiked;
+        private Publication whatWasLiked;
         private LocalDate likedDate;
 
-    public Like(User whoLiked_id, Publication whatWasLiked_id, LocalDate likedDate) {
-        this.whoLiked_id = whoLiked_id;
-        this.whatWasLiked_id = whatWasLiked_id;
+    public Like(User whoLiked, Publication whatWasLiked_id, LocalDate likedDate) {
+        this.whoLiked = whoLiked;
+        this.whatWasLiked = whatWasLiked_id;
         this.likedDate = likedDate;
     }
 
-    public User getWhoLiked_id() {
-        return whoLiked_id;
+    public User getWhoLiked() {
+        return whoLiked;
     }
 
-    public void setWhoLiked_id(User whoLiked_id) {
-        this.whoLiked_id = whoLiked_id;
+    public void setWhoLiked(User whoLiked) {
+        this.whoLiked = whoLiked;
     }
 
-    public Publication getWhatWasLiked_id() {
-        return whatWasLiked_id;
+    public Publication getWhatWasLiked() {
+        return whatWasLiked;
     }
 
-    public void setWhatWasLiked_id(Publication whatWasLiked_id) {
-        this.whatWasLiked_id = whatWasLiked_id;
+    public void setWhatWasLiked(Publication whatWasLiked) {
+        this.whatWasLiked = whatWasLiked;
     }
 
     public LocalDate getLikedDate() {

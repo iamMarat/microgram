@@ -1,12 +1,25 @@
 package edu.marrat.microgram.model;
 
-import java.time.LocalDate;
+import lombok.Data;
+import org.springframework.data.mongodb.core.index.IndexDirection;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+@Document(collection = "publications")
+@Data
 public class Publication {
-    private Long id;
+    private String id;
     private String photo;
     private String description;
     private LocalDate publicDate;
+    @Indexed(direction = IndexDirection.DESCENDING)
+    private List<Like> likes = new ArrayList<>();
+    @Indexed(direction = IndexDirection.DESCENDING)
+    private List<Comment> comments = new ArrayList<>();
 
     public Publication(String photo, String description, LocalDate publicDate) {
         this.photo = photo;
@@ -14,7 +27,7 @@ public class Publication {
         this.publicDate = publicDate;
     }
 
-    public Publication(Long id, String photo, String description, LocalDate publicDate) {
+    public Publication(String id, String photo, String description, LocalDate publicDate) {
         this.id = id;
         this.photo = photo;
         this.description = description;
@@ -45,11 +58,11 @@ public class Publication {
         this.publicDate = publicDate;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 }

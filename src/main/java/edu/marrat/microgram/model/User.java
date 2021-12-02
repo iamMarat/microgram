@@ -1,40 +1,84 @@
 package edu.marrat.microgram.model;
 
 
+import lombok.Data;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.CompoundIndex;
+import org.springframework.data.mongodb.core.index.IndexDirection;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.ArrayList;
+import java.util.List;
+
+//@Data
+//@Document(collection="comments")
+//        class Comment {
+//       @Id
+//    private String id;
+//    private String path;
+//    private String body;
+//    private String username;
+//    private int depth;
+//    private String thread_id;
+//}
+
+
+
+@Data
+@Document(collection = "users")
+@CompoundIndex( def = "{'userName': 1, 'email': 1}")
 public class User {
-    private Long id;
+    @Id
+    private String id;
     private String userName;
     private String email;
     private String password;
-    private int qtyOfLike;
-    private int qtyOfFollower;
-    private int qtyOfFollowing;
+    @Indexed(direction = IndexDirection.ASCENDING)
+    @DBRef
+    List<Publication> publications = new ArrayList<>();
+    @Indexed(direction = IndexDirection.ASCENDING)
+    List<Subscribe> subscribes = new ArrayList<>();
+    private int subscribersQTY ;
+    private int likesQTY;
+    private int followingQTY;
 
 
-    public User(Long id, String userName, String email, String password, int qtyOfLike, int qtyOfFollower, int qtyOfFollowing) {
-        this.id = id;
+//    private List<Like> like = new ArrayList<>();
+
+
+    public User(String userName, String email, String password, List<Publication> publications, List<Subscribe> subscribes) {
         this.userName = userName;
         this.email = email;
         this.password = password;
-        this.qtyOfLike = qtyOfLike;
-        this.qtyOfFollower = qtyOfFollower;
-        this.qtyOfFollowing = qtyOfFollowing;
+        this.publications = publications;
+        this.subscribes = subscribes;
     }
 
-    public User(String userName, String email, String password, int qtyOfLike, int qtyOfFollower, int qtyOfFollowing) {
+    public User(String userName, String email, String password, int subscribersQTY, int likesQTY, int followingQTY) {
         this.userName = userName;
         this.email = email;
         this.password = password;
-        this.qtyOfLike = qtyOfLike;
-        this.qtyOfFollower = qtyOfFollower;
-        this.qtyOfFollowing = qtyOfFollowing;
+        this.subscribersQTY = subscribersQTY;
+        this.likesQTY = likesQTY;
+        this.followingQTY = followingQTY;
     }
 
-    public Long getId() {
+    public User(String userName, String email, String password) {
+        this.userName = userName;
+        this.email = email;
+        this.password = password;
+    }
+
+    public User(String email, String password) {
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -62,29 +106,7 @@ public class User {
         this.password = password;
     }
 
-    public int getQtyOfLike() {
-        return qtyOfLike;
-    }
 
-    public void setQtyOfLike(int qtyOfLike) {
-        this.qtyOfLike = qtyOfLike;
-    }
-
-    public int getQtyOfFollower() {
-        return qtyOfFollower;
-    }
-
-    public void setQtyOfFollower(int qtyOfFollower) {
-        this.qtyOfFollower = qtyOfFollower;
-    }
-
-    public int getQtyOfFollowing() {
-        return qtyOfFollowing;
-    }
-
-    public void setQtyOfFollowing(int qtyOfFollowing) {
-        this.qtyOfFollowing = qtyOfFollowing;
-    }
 }
 
 //

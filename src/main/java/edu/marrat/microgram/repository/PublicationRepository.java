@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface PublicationRepository extends CrudRepository<Publication,Long> {
-
-    List<Publication> getPublicationByDescription();
+    List<Publication> getPublicationById(Publication id);
+    List<Publication> getPublicationByDescription(Publication des);
 }
