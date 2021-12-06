@@ -17,8 +17,19 @@ public class UserService {
 
 
 
-    public List<User> login(String email, String password) {
-        return List.of(new User(email,password));
 
+
+    public List<User> getByName(String name){
+        return repository.getByName(name);
     }
+    public List<User> getByNickName(String nick){
+        return repository.getByNickName(nick);
+    }
+    public List<User> getByMail(String mail){
+        return repository.getByMail(mail);
+    }
+    public List<User> existByEmail(String mail){
+        return repository.existsByEmail(mail);
+    }
+
 }

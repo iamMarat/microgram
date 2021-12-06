@@ -10,32 +10,26 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.toList;
 
 @Configuration
 public class PreloadDatabaseWithData {
 
     @Bean
-    CommandLineRunner initDatabase(UserRepository repository) {
+    CommandLineRunner initDatabase(UserRepository userRepo) {
+        return (args) -> {
+        userRepo.deleteAll();
 
-        repository.deleteAll();
+         List<User> users = Stream.generate(User::random)
+                .limit(10)
+                .collect(toList());
+        userRepo.saveAll(users);
+    };
 
-        return (args) -> Stream.of(users())
-                .peek(System.out::println)
-                .forEach(repository::save);
-    }
 
-    private User[] users() {
 
-        return new User[]{
-                new User("Markus Sillman", "mark007@asd.com","mar123",1,2,3),
-                new User("Kusman MaSill", "kusman@masd.kz","asda311",21,22,144  )
-        };
-    }
-    Subscribe[] subscribes(){
-        return new Subscribe[]{
-                new Subscribe(users()[1], users()[0], LocalDate.now())
-        };
-    }
 
-}
+}}
