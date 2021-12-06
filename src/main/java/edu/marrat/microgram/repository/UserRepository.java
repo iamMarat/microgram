@@ -24,8 +24,7 @@ public interface UserRepository extends CrudRepository<User,String> {
     List<User> getByMail(String mail);
 
 
-//    • Проверка на наличие пользователя в системе. Пользователи уникально идентифицируются
-//    по email.
+
 
     List<User> existsByEmail(String email);
 }
