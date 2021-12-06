@@ -1,7 +1,7 @@
 package edu.marrat.microgram.model;
 
 
-import lombok.Data;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.CompoundIndex;
 import org.springframework.data.mongodb.core.index.IndexDirection;
@@ -29,6 +29,9 @@ import java.util.List;
 @Data
 @Document(collection = "users")
 @CompoundIndex( def = "{'userName': 1, 'email': 1}")
+@Builder
+@NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
+@AllArgsConstructor
 public class User {
     @Id
     private String id;
@@ -48,7 +51,9 @@ public class User {
 //    private List<Like> like = new ArrayList<>();
 
 
+
     public User(String userName, String email, String password, List<Publication> publications, List<Subscribe> subscribes) {
+
         this.userName = userName;
         this.email = email;
         this.password = password;

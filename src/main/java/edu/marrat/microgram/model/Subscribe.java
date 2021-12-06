@@ -1,22 +1,22 @@
 package edu.marrat.microgram.model;
 
-import lombok.Data;
+import lombok.*;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
 
 @Document(collection = "subscribes")
 @Data
+@Builder
+@NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
+@AllArgsConstructor
 public class Subscribe {
-    User WhoSub;
-    User OnWhomSub;
-    LocalDate dateSub;
+    private String id;
+    private User WhoSub;
+    private User OnWhomSub;
+    private LocalDate dateSub;
 
-    public Subscribe(User whoSub, User onWhomSub, LocalDate dateSub) {
-        WhoSub = whoSub;
-        OnWhomSub = onWhomSub;
-        this.dateSub = dateSub;
-    }
+
 }
 
 
