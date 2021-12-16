@@ -10,5 +10,7 @@ import java.util.List;
 
 @Repository
 public interface CommentRepository extends CrudRepository<Comment, User> {
-     List<Comment> getCommentByPathWhoComment(User id);
+
+     Comment getById(String id);
+
 }

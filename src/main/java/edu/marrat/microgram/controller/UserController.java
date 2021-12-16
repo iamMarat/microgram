@@ -3,7 +3,6 @@ package edu.marrat.microgram.controller;
 
 import edu.marrat.microgram.model.User;
 import edu.marrat.microgram.service.UserService;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
@@ -11,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
 @RequestMapping("/users")
 public class UserController {
@@ -37,13 +36,14 @@ private final UserService service;
         return service.getByMail(email);
     }
     @ResponseBody
+
     @GetMapping("/existByEmail/{email}")
     public int existUserByMail(@PathVariable String email){
         return service.existByEmail(email);
     }
 
 
-    @GetMapping
+    @GetMapping("/login")
     public String loginPage(){
         return "login";
     }
@@ -54,17 +54,17 @@ private final UserService service;
         }
         else { return "error_login";}
     }
-    @GetMapping("/signin")
+    @GetMapping("/signup")
     public String signInPage(){
-        return "signin";
+        return "signup";
     }
-    @PostMapping("/signin")
+    @PostMapping("/signup")
     public String signIn(String email,String nickname,String password){
         if (this.service.isValidForSignIn(email,nickname,password)){
             service.saveUser(email,nickname,password);
             return "login";
         }
-        return "signin_error";
+        return "signup_error";
     }
 
 

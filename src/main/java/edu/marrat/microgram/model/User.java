@@ -1,16 +1,18 @@
 package edu.marrat.microgram.model;
 
 
-import edu.marrat.microgram.Generator;
+import edu.marrat.microgram.util.Generator;
 import lombok.*;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.CompoundIndex;
 import org.springframework.data.mongodb.core.index.IndexDirection;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
@@ -20,7 +22,7 @@ import java.util.UUID;
 @Document(collection = "users")
 @Builder
 @AllArgsConstructor
-public class User {
+public class User implements UserDetails {
 
     public User() {
 
@@ -46,18 +48,47 @@ public class User {
     @Indexed
 
     private String name;
+    @Indexed(direction = IndexDirection.ASCENDING)
     private String nickname;
+    @Indexed(direction = IndexDirection.ASCENDING)
     private String email;
     private String password;
-    @Indexed(direction = IndexDirection.ASCENDING)
     @DBRef
     List<Publication> publications;
-    @Indexed(direction = IndexDirection.ASCENDING)
     @DBRef
     List<Subscribe> subscribes;
     private int subscribersQTY ;
     private int likesQTY;
     private int followingQTY;
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority("USER"));
+    }
+
+    @Override
+    public String getUsername() {
+        return null;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return false;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return false;
+    }
 }
 

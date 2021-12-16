@@ -17,5 +17,10 @@ public class Like {
         private LocalDate likedDate;
 
 
+    public Like(User whoLiked, Publication whatWasLiked, LocalDate likedDate) {
+        this.whoLiked = whoLiked;
+        this.whatWasLiked = whatWasLiked;
+        this.likedDate = likedDate;
+    }
 }
 

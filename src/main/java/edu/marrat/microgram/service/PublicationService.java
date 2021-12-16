@@ -15,4 +15,18 @@ public class PublicationService {
 
     private final PublicationRepository repository;
 
+
+    public List<Publication> getPublicationByUser(String username) {
+        return repository.getByUserName(username);
+    }
+
+    public Publication addPublication(String photo, String descriprion) {
+        Publication publication =new Publication(photo, descriprion);
+        return repository.save(publication);
+    }
+
+    public void delete(String id){
+        var byId = repository.findById(id);
+        byId.ifPresent(repository::delete);
+    }
 }

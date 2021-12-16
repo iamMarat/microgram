@@ -14,11 +14,18 @@ import java.time.LocalDate;
 public class Subscribe {
     @Id
     private String id;
-    private User WhoSub;
-    private User OnWhomSub;
+    private User who;
+    private User onWho;
     private LocalDate dateSub;
 
 
+
+
+    public Subscribe(User who, User onWho, LocalDate dateSub) {
+        this.who = who;
+        this.onWho = onWho;
+        this.dateSub =dateSub;
+    }
 }
 
 

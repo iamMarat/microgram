@@ -1,6 +1,7 @@
 package edu.marrat.microgram.repository;
 
 
+import edu.marrat.microgram.model.Publication;
 import edu.marrat.microgram.model.User;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.mongodb.repository.CountQuery;
@@ -23,6 +24,10 @@ public interface UserRepository extends CrudRepository<User,String> {
 
     @Query("{'email': ?0}")
     List<User> getByMail(String mail);
+
+
+
+
 
 
 

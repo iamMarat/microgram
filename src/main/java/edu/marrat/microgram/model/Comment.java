@@ -13,9 +13,17 @@ import java.time.LocalDate;
 public class Comment {
     @Id
     private String id;
-    private User pathWhoComment;
+    private User user_Id;
+    private Publication publication_Id;
     private String comment;
     private LocalDate textDate;
+
+
+    public Comment(String comment, Publication Publication_Id) {
+        this.comment = comment;
+        this.user_Id = user_Id;
+        this.publication_Id = Publication_Id;
+    }
 
 
 }

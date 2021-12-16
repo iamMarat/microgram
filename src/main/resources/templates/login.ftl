@@ -46,7 +46,7 @@
 </head>
 <body>
 <center> <h1> User Login Form </h1> </center>
-<form name="login" action="/users/login" method="post" >
+<form name="login" action="/users/login" method="get" >
     <div class="container">
         <label>Email : </label>
         <input type="email" placeholder="Enter Email" name="email">

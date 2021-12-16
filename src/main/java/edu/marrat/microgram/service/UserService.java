@@ -32,15 +32,10 @@ public class UserService {
     }
 
     public boolean isValid(String email,String password) {
-        User user = new User();
-//        if (email.equals(email)||password.equals(password)) {
-//            return true;
-//        }
         if (repository.existsByEmailAndPassword(email, password)) {
             return true;
         }
         else {return false;}
-
     }
 
 

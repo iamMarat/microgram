@@ -1,4 +1,4 @@
-package edu.marrat.microgram;
+package edu.marrat.microgram.util;
 
 import java.io.IOException;
 import java.nio.file.Files;

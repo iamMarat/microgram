@@ -1,4 +1,4 @@
-package edu.marrat.microgram;
+package edu.marrat.microgram.util;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;

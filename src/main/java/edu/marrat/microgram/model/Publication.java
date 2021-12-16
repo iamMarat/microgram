@@ -19,6 +19,7 @@ public class Publication {
     @Id
     private String id;
     private String photo;
+    private User user;
     private String description;
     private LocalDate publicDate;
     @Indexed(direction = IndexDirection.DESCENDING)
@@ -26,48 +27,9 @@ public class Publication {
     @Indexed(direction = IndexDirection.DESCENDING)
     private List<Comment> comments = new ArrayList<>();
 
-    public Publication(String photo, String description, LocalDate publicDate) {
+
+    public Publication(String photo, String descriprion) {
         this.photo = photo;
-        this.description = description;
-        this.publicDate = publicDate;
-    }
-
-    public Publication(String id, String photo, String description, LocalDate publicDate) {
-        this.id = id;
-        this.photo = photo;
-        this.description = description;
-        this.publicDate = publicDate;
-    }
-
-    public String getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(String photo) {
-        this.photo = photo;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public LocalDate getPublicDate() {
-        return publicDate;
-    }
-
-    public void setPublicDate(LocalDate publicDate) {
-        this.publicDate = publicDate;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+        this.description = descriprion;
     }
 }

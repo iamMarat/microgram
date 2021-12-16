@@ -13,4 +13,6 @@ import java.util.List;
 public interface SubscribeRepository extends CrudRepository<Subscribe, User> {
     List<Subscribe> getSubscribeByDateSub(LocalDate date);
     List<Subscribe> getSubscribeByWhoSub(User id);
+
+
 }
